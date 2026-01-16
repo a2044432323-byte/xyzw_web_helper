@@ -24,13 +24,14 @@ jobs:
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
           # 上游仓库地址（改成原仓库的！）
-          upstream_repository: w1249178256/xyzw_web_helper
+           upstream_sync_repo: w1249178256/xyzw_web_helper
           
           # 上游分支（通常是main或master）
-          upstream_branch: main
+          upstream_sync_branch: main
           
           # 你的分支（通常是main）
-          target_branch: main
+          target_sync_branch: main
           
           # 如果冲突，强制用上游代码覆盖
-          git_config_pull_rebase: true
+          git_config_pull_rebase: false  # 冲突时用上游代码覆盖
+          upstream_pull_args: '--allow-unrelated-histories'  # 允许不同历史记录
