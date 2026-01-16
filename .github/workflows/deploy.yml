@@ -10,9 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: appleboy/ssh-action@master
+      
+      - name: 部署到飞牛OS
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.FNOS_HOST }}
-          username: SUP  # ← 改成你的管理员用户名
+          username: SUP  # 改成你的管理员用户名
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: cd /vol1/docker/myapp && sudo ./deploy.sh
+          port: 22
+          timeout: 60s
+          command_timeout: 20m
+          script: |
+            export HOME=/vol1/docker/myapp
+            cd /vol1/docker/myapp
+            sudo ./deploy.sh
