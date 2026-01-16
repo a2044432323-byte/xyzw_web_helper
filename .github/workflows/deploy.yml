@@ -14,13 +14,12 @@ jobs:
       - name: 部署到飞牛OS
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.FNOS_HOST }}
+          host: ${{ secrets.FNOS_HOST }}  # 确保是公网IP
           username: SUP  # 改成你的管理员用户名
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}  # ← 新增：使用密码认证
           port: 22
           timeout: 60s
           command_timeout: 20m
           script: |
-            export HOME=/vol1/docker/myapp
             cd /vol1/docker/myapp
             sudo ./deploy.sh
