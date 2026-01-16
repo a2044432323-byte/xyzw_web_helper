@@ -16,7 +16,7 @@ jobs:
         with:
           host: ${{ secrets.FNOS_HOST }}
           username: SUP  # 你的管理员用户名
-       password: ${{ secrets.FNOS_PASSWORD }} 
+       password: {{ secrets.FNOS_PASSWORD }} 
           port: 22
           timeout: 60s
           command_timeout: 20m
